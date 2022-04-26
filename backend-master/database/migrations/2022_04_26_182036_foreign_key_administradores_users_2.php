@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditProductsTable extends Migration
+class ForeignKeyAdministradoresUsers2 extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class EditProductsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('administradores', function (Blueprint $table) {
+            $table->foreign('id_admin')->references('id')->on('users');
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ class EditProductsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('administradores', function (Blueprint $table) {
+            //
+        });
     }
 }

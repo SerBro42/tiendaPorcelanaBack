@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\ProductCategoryController;
 
 Route::post('contactForm/add', [ContactFormController::class, 'store']);
 
@@ -19,3 +20,5 @@ Route::group([
 });
 
 Route::post('product', 'ProductController@product');
+
+Route::get('dropDownShow', 'ProductCategoryController@dropDownShow');

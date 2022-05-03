@@ -17,10 +17,10 @@ class ProductController extends Controller
             $path = $request->file('image')->storeAs('public/images', $compPic);
             $post->imagen = $compPic;
         }
-        $post->nombre = "stub name";
-        $post->descripcion = "stub description";
-        $post->cod_prod = "000-000-000";
-        $post->id_cat = 1;
+        $post->nombre = $request->prod_name;
+        $post->descripcion = $request->prod_desc;
+        $post->cod_prod = $request->cod_prod;
+        $post->id_cat = $request->id_cat;
         if($post->save())
         {
             return ['status' => true, 'message' => 'Image saved successfully'];

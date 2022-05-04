@@ -20,5 +20,6 @@ Route::group([
 });
 
 Route::post('product', 'ProductController@product');
+Route::get('showProducts', 'ProductController@showProducts');
 
 Route::get('dropDownShow', 'ProductCategoryController@dropDownShow');

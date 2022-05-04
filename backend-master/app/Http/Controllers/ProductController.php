@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -27,5 +28,13 @@ class ProductController extends Controller
         } else {
             return ['status' => false, 'message' => 'Something went wrong'];
         }
+    }
+
+    public function showProducts(Request $request)
+    {
+        $productos = DB::table("productos")
+                        ->select("id", "nombre", "descripcion", "cod_prod", "id_cat", "imagen")
+                        ->get();
+        return response()->json($productos);
     }
 }

@@ -19,6 +19,8 @@ Route::group([
     Route::get('user-profile', 'AuthController@userProfile');
 });
 
+Route::get('getRoles', 'Role@getRoles');
+
 Route::post('product', 'ProductController@product');
 Route::get('showProducts', 'ProductController@showProducts');
 

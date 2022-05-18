@@ -16,7 +16,7 @@ class ProductController extends Controller
             $extension = $request->file('image')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly).'-'.rand() . '_'.time(). '.'.$extension;
             $path = $request->file('image')->storeAs('public/images', $compPic);
-            $post->imagen = $path;
+            $post->imagen = $compPic;
         }
         $post->nombre = $request->prod_name;
         $post->descripcion = $request->prod_desc;

@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::get('/helloworld', function () {
     return view('helloworld');
 });
+
+Route::get('/images/{filename}', function ($filename)
+{
+    $file = \Illuminate\Support\Facades\Storage::get($filename);
+    return response($file, 200)->header('Content-Type', 'image/jpeg');
+});

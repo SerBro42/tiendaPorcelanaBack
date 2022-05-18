@@ -18,6 +18,7 @@ use Illuminate\Support\Collection;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer;
 use Lcobucci\JWT\Signer\Ecdsa;
+use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Signer\Rsa;
 use Lcobucci\JWT\Token\Builder;
@@ -226,23 +227,55 @@ class Lcobucci extends Provider implements JWT
      * {@inheritdoc}
      *
      * @return \Lcobucci\JWT\Signer\Key
+     *
+     * @throws \Tymon\JWTAuth\Exceptions\JWTException
      */
     protected function getSigningKey()
     {
-        return $this->isAsymmetric()
-            ? InMemory::plainText($this->getPrivateKey(), $this->getPassphrase() ?? '')
-            : InMemory::plainText($this->getSecret());
+        if ($this->isAsymmetric()) {
+            if (! $privateKey = $this->getPrivateKey()) {
+                throw new JWTException('Private key is not set.');
+            }
+
+            return $this->getKey($privateKey, $this->getPassphrase() ?? '');
+        }
+
+        if (! $secret = $this->getSecret()) {
+            throw new JWTException('Secret is not set.');
+        }
+
+        return $this->getKey($secret);
     }
 
     /**
      * {@inheritdoc}
      *
      * @return \Lcobucci\JWT\Signer\Key
+     *
+     * @throws \Tymon\JWTAuth\Exceptions\JWTException
      */
     protected function getVerificationKey()
     {
-        return $this->isAsymmetric()
-            ? InMemory::plainText($this->getPublicKey())
-            : InMemory::plainText($this->getSecret());
+        if ($this->isAsymmetric()) {
+            if (! $public = $this->getPublicKey()) {
+                throw new JWTException('Public key is not set.');
+            }
+
+            return $this->getKey($public);
+        }
+
+        if (! $secret = $this->getSecret()) {
+            throw new JWTException('Secret is not set.');
+        }
+
+        return $this->getKey($secret);
+    }
+
+    /**
+     * Get the signing key instance.
+     */
+    protected function getKey(string $contents, string $passphrase = ''): Key
+    {
+        return InMemory::plainText($contents, $passphrase);
     }
 }

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Role;
 
 Route::post('contactForm/add', [ContactFormController::class, 'store']);
 
@@ -25,3 +27,5 @@ Route::post('product', 'ProductController@product');
 Route::get('showProducts', 'ProductController@showProducts');
 
 Route::get('dropDownShow', 'ProductCategoryController@dropDownShow');
+
+Route::get('image/{filename}', 'ProductController@displayImage')->name('image.displayImage');

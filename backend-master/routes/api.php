@@ -25,6 +25,7 @@ Route::get('getRoles', 'Role@getRoles');
 
 Route::post('product', 'ProductController@product');
 Route::get('showProducts', 'ProductController@showProducts');
+Route::get('products/{id}', 'ProductController@getProduct');
 
 Route::get('dropDownShow', 'ProductCategoryController@dropDownShow');
 

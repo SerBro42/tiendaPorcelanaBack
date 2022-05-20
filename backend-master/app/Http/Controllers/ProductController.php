@@ -22,6 +22,7 @@ class ProductController extends Controller
         $post->descripcion = $request->prod_desc;
         $post->cod_prod = $request->cod_prod;
         $post->id_cat = $request->id_cat;
+        $post->precio = $request->precio;
         if($post->save())
         {
             return ['status' => true, 'message' => 'Image saved successfully'];
@@ -33,8 +34,15 @@ class ProductController extends Controller
     public function showProducts(Request $request)
     {
         $productos = DB::table("productos")
-                        ->select("id", "nombre", "descripcion", "cod_prod", "id_cat", "imagen")
+                        ->select("id", "nombre", "descripcion", "cod_prod", "id_cat", "precio", "imagen")
                         ->get();
         return response()->json($productos);
+    }
+
+    public function getProduct($id)
+    {
+        $producto = DB::table("productos")->find($id);
+        return response()->json($producto);
+
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Role;
 
 Route::post('contactForm/add', [ContactFormController::class, 'store']);
@@ -26,6 +27,12 @@ Route::get('getRoles', 'Role@getRoles');
 Route::post('product', 'ProductController@product');
 Route::get('showProducts', 'ProductController@showProducts');
 Route::get('products/{id}', 'ProductController@getProduct');
+// Route::get('add-to-cart/{id}', [
+//     'uses' => 'ProductController@getAddToCart',
+//     'as' => 'product.addToCart'
+// ]);
+
+Route::post('cliente/add', 'CustomerController@createCustomer');
 
 Route::get('dropDownShow', 'ProductCategoryController@dropDownShow');
 

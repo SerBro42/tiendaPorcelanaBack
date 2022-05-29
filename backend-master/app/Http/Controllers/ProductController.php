@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class ProductController extends Controller
 {
@@ -45,4 +47,18 @@ class ProductController extends Controller
         return response()->json($producto);
 
     }
+
+    // public function getAddToCart(Request $request, $id)
+    // {
+    //     $producto = Producto::find($id);
+    //     $oldCart = Session::has('cart') ? Session::get('cart') : null;
+    //     $cart = new Cart($oldCart);
+    //     $cart->add($producto, $producto->id);
+
+    //     $request->session()->put('cart', $cart);
+    //     //dd($request->session()->get('cart'));
+    //     //return redirect()->route('product.index');
+    //     return response()->json($producto);
+    //     return response()->json($cart);
+    // }
 }

@@ -48,6 +48,11 @@ class ProductController extends Controller
 
     }
 
+    public function deleteProduct($id)
+    {
+        DB::delete('DELETE FROM productos WHERE id = ?', [$id]);
+    }
+
     // public function getAddToCart(Request $request, $id)
     // {
     //     $producto = Producto::find($id);

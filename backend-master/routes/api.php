@@ -27,6 +27,7 @@ Route::get('getRoles', 'Role@getRoles');
 Route::post('product', 'ProductController@product');
 Route::get('showProducts', 'ProductController@showProducts');
 Route::get('products/{id}', 'ProductController@getProduct');
+Route::delete('products/{id}', 'ProductController@deleteProduct');
 // Route::get('add-to-cart/{id}', [
 //     'uses' => 'ProductController@getAddToCart',
 //     'as' => 'product.addToCart'

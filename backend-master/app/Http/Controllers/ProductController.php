@@ -22,6 +22,7 @@ class ProductController extends Controller
         }
         $post->nombre = $request->prod_name;
         $post->descripcion = $request->prod_desc;
+        $post->cantidad = 0;
         $post->cod_prod = $request->cod_prod;
         $post->id_cat = $request->id_cat;
         $post->precio = $request->precio;

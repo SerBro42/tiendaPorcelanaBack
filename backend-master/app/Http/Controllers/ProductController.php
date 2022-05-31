@@ -49,22 +49,14 @@ class ProductController extends Controller
 
     }
 
+    public function setQuantity($id, Request $request)
+    {
+        DB::table('productos')->where('id', $id)->update(['cantidad' => $request->cantidad]);
+    }
+
     public function deleteProduct($id)
     {
         DB::delete('DELETE FROM productos WHERE id = ?', [$id]);
     }
 
-    // public function getAddToCart(Request $request, $id)
-    // {
-    //     $producto = Producto::find($id);
-    //     $oldCart = Session::has('cart') ? Session::get('cart') : null;
-    //     $cart = new Cart($oldCart);
-    //     $cart->add($producto, $producto->id);
-
-    //     $request->session()->put('cart', $cart);
-    //     //dd($request->session()->get('cart'));
-    //     //return redirect()->route('product.index');
-    //     return response()->json($producto);
-    //     return response()->json($cart);
-    // }
 }

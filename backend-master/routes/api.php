@@ -29,10 +29,7 @@ Route::post('product', 'ProductController@product');
 Route::get('showProducts', 'ProductController@showProducts');
 Route::get('products/{id}', 'ProductController@getProduct');
 Route::delete('products/{id}', 'ProductController@deleteProduct');
-// Route::get('add-to-cart/{id}', [
-//     'uses' => 'ProductController@getAddToCart',
-//     'as' => 'product.addToCart'
-// ]);
+Route::put('setQuantity/{id}', 'ProductController@setQuantity');
 
 Route::post('cliente/add', 'CustomerController@createCustomer');
 

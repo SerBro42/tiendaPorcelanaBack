@@ -49,9 +49,9 @@ class ProductController extends Controller
 
     }
 
-    public function setQuantity($id, Request $request)
+    public function setData($id, Request $request)
     {
-        DB::table('productos')->where('id', $id)->update(['cantidad' => $request->cantidad]);
+        DB::table('productos')->where('id', $id)->update(['cantidad' => $request->cantidad, 'precio' => $request->precio]);
     }
 
     public function deleteProduct($id)

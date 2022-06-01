@@ -23,6 +23,8 @@ Route::group([
     Route::get('user-profile', 'AuthController@userProfile');
 });
 
+Route::patch('user/edit/{id}', 'UserController@editUser');
+
 Route::get('getRoles', 'Role@getRoles');
 
 Route::post('product', 'ProductController@product');

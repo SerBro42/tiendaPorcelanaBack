@@ -23,6 +23,7 @@ Route::group([
     Route::get('user-profile', 'AuthController@userProfile');
 });
 
+Route::get('getUsers', 'UserController@getUsers');
 Route::patch('user/edit/{id}', 'UserController@editUser');
 
 Route::get('getRoles', 'Role@getRoles');
@@ -40,5 +41,6 @@ Route::get('dropDownShow', 'ProductCategoryController@dropDownShow');
 Route::post('order/add', 'OrderController@createOrder');
 Route::get('order/latest', 'OrderController@getLatestOrder');
 
+Route::get('getInvoiceRows', 'InvoiceRowController@getInvoiceRows');
 Route::post('invoiceRow/add', 'InvoiceRowController@addInvoiceRow');
 //Route::get('image/{filename}', 'ProductController@displayImage')->name('image.displayImage');

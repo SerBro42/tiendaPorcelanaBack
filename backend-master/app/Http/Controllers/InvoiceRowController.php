@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class InvoiceRowController extends Controller
 {
+    public function getInvoiceRows() 
+    {
+        $rows = DB::table("lineas_de_pedido")
+        ->select("id_pedido", "cantidad", "id_prod", "precio", "created_at")
+        ->get();
+        return response()->json($rows);
+    }
+
     public function addInvoiceRow(Request $request)
     {
         $lineaPedido = new LineaPedido;

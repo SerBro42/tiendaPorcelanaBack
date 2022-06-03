@@ -34,7 +34,7 @@ class ProductController extends Controller
         }
     }
 
-    public function showProducts(Request $request)
+    public function showProducts()
     {
         $productos = DB::table("productos")
                         ->select("id", "nombre", "descripcion", "cod_prod", "id_cat", "precio", "imagen")

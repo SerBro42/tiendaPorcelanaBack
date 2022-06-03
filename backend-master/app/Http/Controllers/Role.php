@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Role extends Controller
 {
-    public function getRoles(Request $request)
+    public function getRoles()
     {
         $roles = DB::table("roles")
                         ->select("id_rol", "nombre_rol")

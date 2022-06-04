@@ -25,6 +25,7 @@ Route::group([
 
 Route::get('getUsers', 'UserController@getUsers');
 Route::patch('user/edit/{id}', 'UserController@editUser');
+Route::patch('user/promoteToAdmin/{id}', 'UserController@promoteToAdmin');
 
 Route::get('getRoles', 'Role@getRoles');
 

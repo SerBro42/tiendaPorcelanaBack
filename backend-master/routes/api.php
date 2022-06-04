@@ -44,4 +44,5 @@ Route::get('order/latest', 'OrderController@getLatestOrder');
 
 Route::get('getInvoiceRows', 'InvoiceRowController@getInvoiceRows');
 Route::post('invoiceRow/add', 'InvoiceRowController@addInvoiceRow');
+Route::get('getUserInvoiceRows/{id}', 'InvoiceRowController@getUserInvoiceRows');
 //Route::get('image/{filename}', 'ProductController@displayImage')->name('image.displayImage');

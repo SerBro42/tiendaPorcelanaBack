@@ -9,10 +9,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Role;
 
-Route::post('contactForm/add', [ContactFormController::class, 'store']);
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['api', 'guest'],
     'prefix' => 'auth'
 
 ], function ($router) {
@@ -23,26 +22,36 @@ Route::group([
     Route::get('user-profile', 'AuthController@userProfile');
 });
 
-Route::get('getUsers', 'UserController@getUsers');
-Route::patch('user/edit/{id}', 'UserController@editUser');
-Route::patch('user/promoteToAdmin/{id}', 'UserController@promoteToAdmin');
+Route::group([
+    'middleware' => ['guest']
 
-Route::get('getRoles', 'Role@getRoles');
+], function () {
+    //Rutas a las que se permitirá acceso
+    Route::post('contactForm/add', [ContactFormController::class, 'store']);
 
-Route::post('product', 'ProductController@product');
-Route::get('showProducts', 'ProductController@showProducts');
-Route::get('products/{id}', 'ProductController@getProduct');
-Route::delete('products/{id}', 'ProductController@deleteProduct');
-Route::put('setData/{id}', 'ProductController@setData');
+        
+    Route::get('getUsers', 'UserController@getUsers');
+    Route::patch('user/edit/{id}', 'UserController@editUser');
+    Route::patch('user/promoteToAdmin/{id}', 'UserController@promoteToAdmin');
 
-Route::post('cliente/add', 'CustomerController@createCustomer');
+    Route::get('getRoles', 'Role@getRoles');
 
-Route::get('dropDownShow', 'ProductCategoryController@dropDownShow');
+    Route::post('product', 'ProductController@product');
+    Route::get('showProducts', 'ProductController@showProducts');
+    Route::get('products/{id}', 'ProductController@getProduct');
+    Route::delete('products/{id}', 'ProductController@deleteProduct');
+    Route::put('setData/{id}', 'ProductController@setData');
 
-Route::post('order/add', 'OrderController@createOrder');
-Route::get('order/latest', 'OrderController@getLatestOrder');
+    Route::post('cliente/add', 'CustomerController@createCustomer');
 
-Route::get('getInvoiceRows', 'InvoiceRowController@getInvoiceRows');
-Route::post('invoiceRow/add', 'InvoiceRowController@addInvoiceRow');
-Route::get('getUserInvoiceRows/{id}', 'InvoiceRowController@getUserInvoiceRows');
-//Route::get('image/{filename}', 'ProductController@displayImage')->name('image.displayImage');
+    Route::get('dropDownShow', 'ProductCategoryController@dropDownShow');
+
+    Route::post('order/add', 'OrderController@createOrder');
+    Route::get('order/latest', 'OrderController@getLatestOrder');
+
+    Route::get('getInvoiceRows', 'InvoiceRowController@getInvoiceRows');
+    Route::post('invoiceRow/add', 'InvoiceRowController@addInvoiceRow');
+    Route::get('getUserInvoiceRows/{id}', 'InvoiceRowController@getUserInvoiceRows');
+});
+
+
